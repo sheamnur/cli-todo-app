@@ -1,4 +1,10 @@
-101,Wake up,incomplete
-102,Take bath,complete
+101,prayer,Complete
+102,Take bath,Complete
 103,Walk,incomplete
 104,Meal,incomplete
+109,sleep,incomplete
+110,gym(1 hour),Incomplete
+112,,Incomplete
+107,ssss,Incomplete
+108,Chill,Incomplete
+121,go for bed,Incomplete

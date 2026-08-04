@@ -1,47 +1,62 @@
 class Task():
     tasks={}
     def add_task(self,task_name,id):
-        self.task_name=task_name
-        self.id=id
         self.tasks[id]={
             "title": task_name,
-            "status":"incomplete"
+            "status":"Incomplete"
         }
-        print("Task add successfully.")
+        print("Task added successfully.")
     def show_all_task(self):
         for key,value in self.tasks.items():
             print(key,value)
     
     def search_task(self,id):
-        for key,value in self.tasks.items():
-            if key==id:
-                print("Task is found.")
-                print(f"Task ={value}")
-                return
+        if id in self.tasks:
+            print("Task is found.")
+            print(f"Task id={id}")
+            print(f"Task title={self.tasks[id]['title']}")
+            print(f"Task status={self.tasks[id]['status']}")
+            return
         print("Task is not found.")
     
                 
     def complete_task(self,id):
-        for key,value in self.tasks.items():
-            if key==id:
-                self.tasks[key]["status"]="complete"
-                print("Task is complete now.")
+        if id in self.tasks:
+            if self.tasks[id]['status']=="Complete":
+                print("Task already Completed!")
                 return
+            self.tasks[id]['status']="Complete"
+            print("Task completed now.")
+            return
         print("Task is not found.")
 
     def update_task(self,id):
-        for key,value in self.tasks.items():
-            if key==id:
-                task_name=input("Enter the update task: ")
-                status=input("Enter status for the task: ")
-                self.tasks[key]["title"]=task_name
-                self.tasks[key]["status"]=status
-                return
+        if id in self.tasks:
+            while True:
+
+                task_name=input("Enter the update task title: ")
+                if task_name.isdigit() or task_name.isspace() or task_name=="":
+                    print("Task name cannot be just integer or empty.")
+                else:
+                    break
+
+            status=input("Enter the task status: ")
+            while  status not in ["Complete","Incomplete"]:
+                print("Please enter either 'Complete' or 'Incomplete'")
+                status=input("Enter status for the task again: ")
+
+            self.tasks[id]['title']=task_name
+            self.tasks[id]['status']=status
+            print("Task updated successfully.")
+            return
+    
+                
         print("Task is not found.")
 
     def delete_task(self,id):
         if id in self.tasks:
             del self.tasks[id]
+            print("Task deleted successfully.")
             return
         else:
             print("Task not found.")
